@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Potico</title>
+        <script
+            src="https://kit.fontawesome.com/9a6d25af5b.js"
+            crossorigin="anonymous"
+        ></script>
+        <style>
+            :root {
+                --primary-color: 247, 159, 142;
+                --border-color: 229, 231, 235;
+                --old-price-color: 156, 163, 175;
+            }
+
+            * {
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+                font-family: system-ui, -apple-system, BlinkMacSystemFont,
+                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+                    "Helvetica Neue", sans-serif;
+                font-size: 100%;
+                color: rgb(55, 65, 81);
+            }
+
+            ul {
+                list-style-type: none;
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            img {
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            select {
+                cursor: pointer;
+            }
+
+            .relative {
+                position: relative;
+            }
+
+            .absolute {
+                position: absolute;
+            }
+
+            .flex {
+                display: flex;
+            }
+
+            .flex-column {
+                flex-direction: column;
+            }
+
+            .justify-center {
+                justify-content: center;
+            }
+
+            .align-center {
+                align-items: center;
+            }
+
+            .flex-end {
+                justify-content: flex-end;
+            }
+
+            .w-full {
+                width: 100%;
+            }
+
+            .h-full {
+                height: 100%;
+            }
+
+            .content {
+                max-width: 1440px;
+                margin: 0 auto;
+            }
+
+            .col-50 {
+                flex-basis: 50%;
+            }
+
+            .col-25 {
+                flex-basis: 25%;
+            }
+
+            .grid {
+                display: grid;
+            }
+
+            header {
+                border-bottom: 1px solid #ccc;
+            }
+
+            .above_message {
+                background-color: rgb(var(--primary-color));
+                color: white;
+                padding: 2px 0;
+                font-size: 0.9rem;
+            }
+
+            .above_message > div > p {
+                font-weight: 600;
+                color: white;
+            }
+
+            .user {
+                top: 0;
+                bottom: 0;
+                right: 50px;
+                gap: 10px;
+            }
+
+            .user > a {
+                color: white;
+            }
+
+            .header_content {
+                padding: 12px 16px;
+            }
+
+            .logo {
+                height: 36px;
+            }
+
+            .sent_to {
+                margin-left: 16px;
+                gap: 8px;
+                font-size: 0.8rem;
+            }
+
+            .select_address {
+                margin-left: 16px;
+                font-size: 0.8rem;
+            }
+
+            .select_address select {
+                padding: 8px;
+                border-radius: 8px;
+                width: 280px;
+                border-color: #ccc;
+            }
+
+            .select_address select:focus,
+            .select_address select:focus-visible {
+                border-color: rgb(var(--primary-color));
+                outline-color: transparent;
+                box-shadow: 0 0 2px 3px rgba(var(--primary-color), 0.5);
+            }
+
+            .menu {
+                font-size: 0.9rem;
+                padding: 0 16px;
+                cursor: pointer;
+            }
+
+            .menu > ul {
+                display: none;
+                top: 100%;
+                right: -40%;
+                grid-template-columns: 150px 150px;
+                background-color: white;
+            }
+
+            .menu:hover > span {
+                text-decoration: underline;
+            }
+
+            .menu:hover > ul {
+                display: grid;
+                box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+            }
+
+            .menu > ul li {
+                padding: 8px;
+                background-color: white;
+            }
+
+            .menu > ul li:hover {
+                background-color: rgb(var(--primary-color));
+                color: white;
+            }
+
+            .cart {
+                cursor: pointer;
+            }
+
+            .banner_container {
+                padding: 10px;
+                gap: 12px;
+                height: 280px;
+            }
+
+            .banner_container > * {
+                height: 100%;
+            }
+
+            .small_banner {
+                gap: 6px;
+                justify-content: space-between;
+            }
+
+            .flash_sale {
+                gap: 8px;
+                width: 240px;
+            }
+
+            .flash_sale > .product_wrapper {
+                min-height: 0;
+            }
+
+            .flash_sale > .product_wrapper > a {
+                border: 2px solid rgb(var(--border-color));
+            }
+
+            .divider {
+                height: 2.5rem;
+                background-color: rgb(var(--primary-color));
+            }
+
+            .product_wrapper {
+                display: flex;
+            }
+
+            .product_image {
+                flex: 1;
+                min-height: 0;
+                object-fit: contain;
+            }
+
+            .product_info {
+                padding: 12px;
+                font-size: 0.9rem;
+                gap: 4px;
+            }
+
+            .product_attribute {
+                gap: 8px;
+            }
+
+            .product_price {
+                font-weight: 600;
+                color: rgb(var(--primary-color));
+                font-size: 1rem;
+            }
+
+            .product_old_price {
+                font-size: 0.8rem;
+                color: rgb(var(--old-price-color));
+                text-decoration: line-through;
+            }
+
+            .product_rating {
+                gap: 4px;
+                font-size: 0.8rem;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            <div
+                class="above_message relative flex justify-center align-center w-full"
+            >
+                <div class="content flex justify-center align-center">
+                    <p>Miễn phí vận chuyển nội thành Hà Nội & TP.HCM</p>
+                    <div class="user absolute flex">
+                        <a href="#">Theo dõi đơn hàng</a>
+                        <a href="#">Đăng nhập</a>
+                        <a href="#">Đăng ký</a>
+                    </div>
+                </div>
+            </div>
+            <div class="header_content flex content">
+                <div class="col-50 flex align-center">
+                    <div class="logo">
+                        <a href="#">
+                            <img
+                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/hub/350_0dcOGeg3ekZp5QwC1gYhMmSwQ.webp"
+                                alt="logo"
+                            />
+                        </a>
+                    </div>
+                    <div class="sent_to flex align-center">
+                        <i
+                            class="fa-sharp fa-solid fa-lg fa-location-dot"
+                            style="color: #0dba21"
+                        ></i>
+                        <span>GIAO ĐẾN</span>
+                    </div>
+                    <div class="select_address">
+                        <select>
+                            <option>Hà Nội</option>
+                            <option>TP HCM</option>
+                            <option>Các tỉnh khác tại Việt Nam</option>
+                        </select>
+                    </div>
+                </div>
+                <nav class="col-50 flex flex-end">
+                    <div class="relative menu flex align-center">
+                        <span>Sinh nhật</span>
+                        <ul class="absolute grid">
+                            <li>Tất cả</li>
+                            <li>Bạn bè</li>
+                            <li>Vợ/ Bạn gái</li>
+                            <li>Chồng/ Bạn trai</li>
+                            <li>Mẹ</li>
+                            <li>Bố</li>
+                            <li>Quà cho bé</li>
+                            <li>Anh/ Chị/ Em</li>
+                        </ul>
+                    </div>
+                    <div class="relative menu flex align-center">
+                        <span>Dịp</span>
+                        <ul class="absolute grid">
+                            <li>Lãng mạn</li>
+                            <li>Kỉ niệm</li>
+                            <li>Tốt nghiệp</li>
+                            <li>Hoa cưới</li>
+                            <li>Thăm bệnh</li>
+                            <li>Xin lỗi</li>
+                            <li>Cảm ơn</li>
+                            <li>Sinh nhật</li>
+                            <li>Khai trương</li>
+                            <li>Chia buồn</li>
+                        </ul>
+                    </div>
+                    <div class="relative menu flex align-center">
+                        <span>Hoa & Cây</span>
+                        <ul class="absolute grid">
+                            <li>Hoa Hồng</li>
+                            <li>Hoa Hướng Dương</li>
+                            <li>Cẩm Tú Cầu</li>
+                            <li>Cát Tường</li>
+                            <li>Hoa Tulip</li>
+                            <li>Hoa Ly</li>
+                            <li>Hoa Lan</li>
+                            <li>Hoa Bibi</li>
+                        </ul>
+                    </div>
+                    <div class="relative menu flex align-center">
+                        <span>Loại sản phẩm</span>
+                        <ul class="absolute grid">
+                            <li>Bó Hoa</li>
+                            <li>Hoa Để Bàn</li>
+                            <li>Giỏ Hoa</li>
+                            <li>Hộp Hoa</li>
+                            <li>Bó Hoa Khổng Lồ</li>
+                            <li>Bó Hoa Nhỏ Xinh</li>
+                            <li>Kệ Hoa</li>
+                            <li>Hoa Ăn Được</li>
+                            <li>Bộ Sản Phẩm</li>
+                        </ul>
+                    </div>
+                    <div class="relative menu flex align-center">
+                        <span>Quà tặng</span>
+                        <ul class="absolute grid">
+                            <li>Hộp Quà</li>
+                            <li>Trang Sức</li>
+                            <li>Nến Thơm</li>
+                            <li>Nước Hoa</li>
+                            <li>Kem Lạnh</li>
+                            <li>Bánh Kem</li>
+                            <li>Sô-cô-la</li>
+                            <li>Voucher</li>
+                        </ul>
+                    </div>
+                    <div class="cart flex align-center">
+                        <i
+                            class="fa-solid fa-cart-shopping fa-lg"
+                            style="color: #52617a"
+                        ></i>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div
+                class="banner_container content flex align-center justify-center"
+            >
+                <div class="main_banner col-50">
+                    <img
+                        class="h-full"
+                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_6IJXAi0eTPTwjADU5VSmWfDXz.webp"
+                    />
+                </div>
+                <div
+                    class="small_banner col-25 flex flex-column justify-center"
+                >
+                    <img
+                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_MvGE4oT6WXVw6PX0Y1NHsLjRu.webp"
+                        alt=""
+                    />
+                    <img
+                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_aLUbE3c5CndpGEdjY2uKb8rA9.webp"
+                        alt=""
+                    />
+                </div>
+                <div class="flash_sale flex flex-column">
+                    <h4>SALE SỐC</h4>
+                    <div class="product_wrapper">
+                        <a href="#" class="flex flex-column">
+                            <img
+                                class="product_image"
+                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_ZKy1OsSyJQY3EG3GQ3e8w0Kae.jpg"
+                                alt=""
+                            />
+                            <div class="product_info flex flex-column">
+                                <span class="product_name">Beautiful You</span>
+                                <div
+                                    class="product_attribute flex align-center"
+                                >
+                                    <span class="product_price">299,000 đ</span>
+                                    <span class="product_old_price"
+                                        >499,000 đ</span
+                                    >
+                                    <span
+                                        class="product_rating flex align-center"
+                                    >
+                                        <i
+                                            class="fa-solid fa-star"
+                                            style="color: #f1ff2e"
+                                        ></i>
+                                        <span>5.0</span>
+                                        <span>(50)</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="divider" />
+        </main>
+    </body>
+</html>
