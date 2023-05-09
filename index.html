@@ -1,2129 +1,2029 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Potico</title>
-        <script
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CHOHOA</title>
+    <script
             src="https://kit.fontawesome.com/9a6d25af5b.js"
             crossorigin="anonymous"
-        ></script>
-        <style>
-            :root {
-                --primary-color: 247, 159, 142;
-                --border-color: 229, 231, 235;
-                --old-price-color: 156, 163, 175;
-                --tw-ring-offset-shadow: 0 0 #0000;
-                --tw-ring-shadow: 0 0 #0000;
-                --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
-                    0 4px 6px -2px rgba(0, 0, 0, 0.05);
-                --footer-background: 255, 239, 240;
-            }
-
-            * {
-                padding: 0;
-                margin: 0;
-                box-sizing: border-box;
-                font-family: system-ui, -apple-system, BlinkMacSystemFont,
-                    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
-                    "Helvetica Neue", sans-serif;
-                font-size: 100%;
-                color: rgb(55, 65, 81);
-            }
-
-            ul {
-                list-style-type: none;
-            }
-
-            a {
-                text-decoration: none;
-            }
-
-            img {
-                max-width: 100%;
-                max-height: 100%;
-            }
-
-            select {
-                cursor: pointer;
-            }
-
-            .relative {
-                position: relative;
-            }
-
-            .absolute {
-                position: absolute;
-            }
-
-            .flex {
-                display: flex;
-            }
-
-            .flex-column {
-                flex-direction: column;
-            }
-
-            .justify-center {
-                justify-content: center;
-            }
-
-            .align-center {
-                align-items: center;
-            }
-
-            .flex-end {
-                justify-content: flex-end;
-            }
-
-            .justify-between {
-                justify-content: space-between;
-            }
-
-            .flex-wrap {
-                flex-wrap: wrap;
-            }
-
-            .w-full {
-                width: 100%;
-            }
-
-            .h-full {
-                height: 100%;
-            }
-
-            .content {
-                max-width: 1440px;
-                margin: 0 auto;
-            }
-
-            .col-50 {
-                flex-basis: 50%;
-            }
-
-            .col-25 {
-                flex-basis: 25%;
-            }
-
-            .grid {
-                display: grid;
-            }
-
-            header {
-                border-bottom: 1px solid #ccc;
-            }
-
-            .above_message {
-                background-color: rgb(var(--primary-color));
-                color: white;
-                padding: 2px 0;
-                font-size: 0.9rem;
-            }
-
-            .above_message > div > p {
-                font-weight: 600;
-                color: white;
-            }
-
-            .user {
-                top: 0;
-                bottom: 0;
-                right: 50px;
-                gap: 10px;
-            }
-
-            .user > a {
-                color: white;
-            }
-
-            .header_content {
-                padding: 12px 16px;
-            }
-
-            .logo {
-                height: 36px;
-            }
-
-            .sent_to {
-                margin-left: 16px;
-                gap: 8px;
-                font-size: 0.8rem;
-            }
-
-            .select_address {
-                margin-left: 16px;
-                font-size: 0.8rem;
-            }
-
-            .select_address select {
-                padding: 8px;
-                border-radius: 8px;
-                width: 280px;
-                border-color: #ccc;
-            }
-
-            .select_address select:focus,
-            .select_address select:focus-visible {
-                border-color: rgb(var(--primary-color));
-                outline-color: transparent;
-                box-shadow: 0 0 2px 3px rgba(var(--primary-color), 0.5);
-            }
-
-            .menu {
-                font-size: 0.9rem;
-                padding: 0 16px;
-                cursor: pointer;
-            }
-
-            .menu > ul {
-                display: none;
-                top: 100%;
-                right: -40%;
-                grid-template-columns: 150px 150px;
-                background-color: white;
-            }
-
-            .menu:hover > span {
-                text-decoration: underline;
-            }
-
-            .menu:hover > ul {
-                display: grid;
-                box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
-            }
-
-            .menu > ul li {
-                padding: 8px;
-                background-color: white;
-            }
-
-            .menu > ul li:hover {
-                background-color: rgb(var(--primary-color));
-                color: white;
-            }
-
-            .cart {
-                cursor: pointer;
-            }
-
-            .banner_container {
-                padding: 10px;
-                gap: 12px;
-                height: 280px;
-            }
-
-            .banner_container > * {
-                height: 100%;
-            }
-
-            .small_banner {
-                gap: 6px;
-                justify-content: space-between;
-            }
-
-            .flash_sale {
-                gap: 8px;
-                width: 240px;
-            }
-
-            .flash_sale > .product_wrapper {
-                min-height: 0;
-            }
-
-            .flash_sale > .product_wrapper:hover {
-                border: none;
-                box-shadow: none;
-            }
-
-            .flash_sale > .product_wrapper > a {
-                border: 2px solid rgb(var(--border-color));
-            }
-
-            .divider {
-                height: 2.5rem;
-                background-color: rgb(var(--primary-color));
-            }
-
-            .product_wrapper {
-                display: flex;
-            }
-
-            .product_wrapper:hover {
-                border: 1px solid rgb(var(--border-color));
-                box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
-                    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-            }
-
-            .product_image {
-                margin-top: 16px;
-                flex: 1;
-                min-height: 0;
-                object-fit: contain;
-            }
-
-            .product_info {
-                padding: 10px 10px 20px;
-                font-size: 0.9rem;
-                gap: 4px;
-            }
-
-            .product_name {
-                text-transform: capitalize;
-            }
-
-            .product_attribute {
-                gap: 4px;
-            }
-
-            .product_price {
-                font-weight: 600;
-                color: rgb(var(--primary-color));
-                font-size: 0.9rem;
-            }
-
-            .product_old_price {
-                font-size: 0.8rem;
-                color: rgb(var(--old-price-color));
-                text-decoration: line-through;
-            }
-
-            .product_rating {
-                gap: 4px;
-                font-size: 0.8rem;
-            }
-
-            .row_wrapper {
-                padding: 0 16px 16px;
-            }
-
-            .row {
-                grid-template-columns: repeat(6, 1fr);
-                grid-template-rows: 1fr 1fr;
-                gap: 8px;
-                padding-top: 32px;
-            }
-
-            .single_row {
-                grid-template-rows: 1fr;
-            }
-
-            .heading {
-                padding: 16px 0 4px;
-                border-bottom: 2px solid rgb(var(--border-color));
-            }
-
-            .heading h2 {
-                font-size: 1.6rem;
-                font-weight: 500;
-                color: black;
-                text-transform: capitalize;
-            }
-
-            .heading a {
-                font-size: 0.8rem;
-                color: rgb(var(--primary-color));
-            }
-
-            .introduction {
-                padding-top: 16px;
-            }
-
-            .introduction > h2 {
-                font-size: 1.6rem;
-                font-weight: 500;
-                color: black;
-                padding: 16px 0 24px;
-            }
-
-            .introduction > p {
-                padding: 16px 0;
-            }
-
-            .introduction > span {
-                display: block;
-                margin-bottom: 8px;
-                font-weight: 500;
-            }
-
-            .introduction > span > a {
-                color: rgb(var(--primary-color));
-            }
-
-            footer {
-                background-color: rgb(var(--footer-background));
-                padding: 24px 16px;
-                font-size: 0.9rem;
-                margin-top: 32px;
-            }
-
-            footer * {
-                color: rgb(48, 45, 111);
-            }
-
-            .footer_logo {
-                height: 48px;
-            }
-
-            .info_wrapper {
-                gap: 36px;
-            }
-
-            .info_wrapper .brand {
-                gap: 12px;
-                flex-basis: 32%;
-            }
-
-            .subscribe {
-                align-self: stretch;
-                height: 42px;
-                align-items: stretch;
-            }
-
-            .subscribe input {
-                flex: 1 0 80%;
-                padding: 8px 16px;
-                border: 1px solid rgb(var(--primary-color));
-            }
-
-            .subscribe input:focus,
-            .subscribe input:focus-visible {
-                outline: none;
-                border: 2px solid rgb(var(--primary-color));
-            }
-
-            .subscribe button {
-                flex: 1 0 20%;
-                border: none;
-                background-color: rgb(var(--primary-color));
-                font-weight: 500;
-                color: white;
-                cursor: pointer;
-            }
-
-            .info {
-                gap: 12px;
-                flex: 1;
-            }
-
-            .info h2 {
-                font-size: 1.25rem;
-                font-weight: 500;
-                text-transform: uppercase;
-            }
-
-            .info a:hover {
-                text-decoration: underline;
-                color: rgb(var(--primary-color));
-            }
-
-            .qna h2 {
-                margin-bottom: 16px;
-            }
-
-            .qna b {
-                font-weight: 600;
-            }
-
-            .qna p {
-                margin-bottom: 10px;
-            }
-
-            .copyright {
-                margin-top: 60px;
-            }
-
-            .copyright > div {
-                gap: 8px;
-            }
-
-            .copyright .social {
-                gap: 16px;
-            }
-
-            .social i {
-                transition: 500ms ease-in-out;
-            }
-
-            .social i:hover {
-                transform: translateY(-10px);
-                transition: 500ms ease-in-out;
-            }
-        </style>
-    </head>
-    <body>
-        <header>
-            <div
-                class="above_message relative flex justify-center align-center w-full"
-            >
-                <div class="content flex justify-center align-center">
-                    <p>Miễn phí vận chuyển nội thành Hà Nội & TP.HCM</p>
-                    <div class="user absolute flex">
-                        <a href="#">Theo dõi đơn hàng</a>
-                        <a href="#">Đăng nhập</a>
-                        <a href="#">Đăng ký</a>
-                    </div>
-                </div>
-            </div>
-            <div class="header_content flex content">
-                <div class="col-50 flex align-center">
-                    <div class="logo">
-                        <a href="#">
-                            <img
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/hub/350_0dcOGeg3ekZp5QwC1gYhMmSwQ.webp"
-                                alt="logo"
-                            />
-                        </a>
-                    </div>
-                    <div class="sent_to flex align-center">
-                        <i
-                            class="fa-sharp fa-solid fa-lg fa-location-dot"
-                            style="color: #0dba21"
-                        ></i>
-                        <span>GIAO ĐẾN</span>
-                    </div>
-                    <div class="select_address">
-                        <select>
-                            <option>Hà Nội</option>
-                            <option>TP HCM</option>
-                            <option>Các tỉnh khác tại Việt Nam</option>
-                        </select>
-                    </div>
-                </div>
-                <nav class="col-50 flex flex-end">
-                    <div class="relative menu flex align-center">
-                        <span>Sinh nhật</span>
-                        <ul class="absolute grid">
-                            <li>Tất cả</li>
-                            <li>Bạn bè</li>
-                            <li>Vợ/ Bạn gái</li>
-                            <li>Chồng/ Bạn trai</li>
-                            <li>Mẹ</li>
-                            <li>Bố</li>
-                            <li>Quà cho bé</li>
-                            <li>Anh/ Chị/ Em</li>
-                        </ul>
-                    </div>
-                    <div class="relative menu flex align-center">
-                        <span>Dịp</span>
-                        <ul class="absolute grid">
-                            <li>Lãng mạn</li>
-                            <li>Kỉ niệm</li>
-                            <li>Tốt nghiệp</li>
-                            <li>Hoa cưới</li>
-                            <li>Thăm bệnh</li>
-                            <li>Xin lỗi</li>
-                            <li>Cảm ơn</li>
-                            <li>Sinh nhật</li>
-                            <li>Khai trương</li>
-                            <li>Chia buồn</li>
-                        </ul>
-                    </div>
-                    <div class="relative menu flex align-center">
-                        <span>Hoa & Cây</span>
-                        <ul class="absolute grid">
-                            <li>Hoa Hồng</li>
-                            <li>Hoa Hướng Dương</li>
-                            <li>Cẩm Tú Cầu</li>
-                            <li>Cát Tường</li>
-                            <li>Hoa Tulip</li>
-                            <li>Hoa Ly</li>
-                            <li>Hoa Lan</li>
-                            <li>Hoa Bibi</li>
-                        </ul>
-                    </div>
-                    <div class="relative menu flex align-center">
-                        <span>Loại sản phẩm</span>
-                        <ul class="absolute grid">
-                            <li>Bó Hoa</li>
-                            <li>Hoa Để Bàn</li>
-                            <li>Giỏ Hoa</li>
-                            <li>Hộp Hoa</li>
-                            <li>Bó Hoa Khổng Lồ</li>
-                            <li>Bó Hoa Nhỏ Xinh</li>
-                            <li>Kệ Hoa</li>
-                            <li>Hoa Ăn Được</li>
-                            <li>Bộ Sản Phẩm</li>
-                        </ul>
-                    </div>
-                    <div class="relative menu flex align-center">
-                        <span>Quà tặng</span>
-                        <ul class="absolute grid">
-                            <li>Hộp Quà</li>
-                            <li>Trang Sức</li>
-                            <li>Nến Thơm</li>
-                            <li>Nước Hoa</li>
-                            <li>Kem Lạnh</li>
-                            <li>Bánh Kem</li>
-                            <li>Sô-cô-la</li>
-                            <li>Voucher</li>
-                        </ul>
-                    </div>
-                    <div class="cart flex align-center">
-                        <i
-                            class="fa-solid fa-cart-shopping fa-lg"
-                            style="color: #52617a"
-                        ></i>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <main>
-            <div
-                class="banner_container content flex align-center justify-center"
-            >
-                <div class="main_banner col-50">
+    ></script>
+    <style>
+        /*Part 4 start*/
+        :root {
+            --primary-color: 247, 159, 142;
+            --border-color: 229, 231, 235;
+            --old-price-color: 156, 163, 175;
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+            0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --footer-background: 255, 239, 240;
+        }
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont,
+            "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+            "Helvetica Neue", sans-serif;
+            font-size: 100%;
+            color: rgb(55, 65, 81);
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        select {
+            cursor: pointer;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .flex {
+            display: flex;
+        }
+
+        .flex-column {
+            flex-direction: column;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .align-center {
+            align-items: center;
+        }
+
+        .flex-end {
+            justify-content: flex-end;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .content {
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .col-50 {
+            flex-basis: 50%;
+        }
+
+        .col-25 {
+            flex-basis: 25%;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        /*Part 4 end*/
+
+        /*Part 1 start*/
+        header {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .above_message {
+            background-color: rgb(var(--primary-color));
+            color: white;
+            padding: 2px 0;
+            font-size: 0.9rem;
+        }
+
+        .above_message > div > p {
+            font-weight: 600;
+            color: white;
+        }
+
+        .user {
+            top: 0;
+            bottom: 0;
+            right: 50px;
+            gap: 10px;
+        }
+
+        .user > a {
+            color: white;
+        }
+
+        .header_content {
+            padding: 12px 16px;
+        }
+
+        .logo {
+            height: 36px;
+        }
+
+        .sent_to {
+            margin-left: 16px;
+            gap: 8px;
+            font-size: 0.8rem;
+        }
+
+        .select_address {
+            margin-left: 16px;
+            font-size: 0.8rem;
+        }
+
+        .select_address select {
+            padding: 8px;
+            border-radius: 8px;
+            width: 280px;
+            border-color: #ccc;
+        }
+
+        .select_address select:focus,
+        .select_address select:focus-visible {
+            border-color: rgb(var(--primary-color));
+            outline-color: transparent;
+            box-shadow: 0 0 2px 3px rgba(var(--primary-color), 0.5);
+        }
+
+        .menu {
+            font-size: 0.9rem;
+            padding: 0 16px;
+            cursor: pointer;
+        }
+
+        .menu > ul {
+            display: none;
+            top: 100%;
+            right: -40%;
+            grid-template-columns: 150px 150px;
+            background-color: white;
+        }
+
+        .menu:hover > span {
+            text-decoration: underline;
+        }
+
+        .menu:hover > ul {
+            display: grid;
+            box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu > ul li {
+            padding: 8px;
+            background-color: white;
+        }
+
+        .menu > ul li:hover {
+            background-color: rgb(var(--primary-color));
+            color: white;
+        }
+
+        .cart {
+            cursor: pointer;
+        }
+
+        .banner_container {
+            padding: 10px;
+            gap: 12px;
+            height: 280px;
+        }
+
+        .banner_container > * {
+            height: 100%;
+        }
+
+        .small_banner {
+            gap: 6px;
+            justify-content: space-between;
+        }
+
+        .flash_sale {
+            gap: 8px;
+            width: 240px;
+        }
+
+        .flash_sale > .product_wrapper {
+            min-height: 0;
+        }
+
+        .flash_sale > .product_wrapper:hover {
+            border: none;
+            box-shadow: none;
+        }
+
+        .flash_sale > .product_wrapper > a {
+            border: 2px solid rgb(var(--border-color));
+        }
+
+        .divider {
+            height: 2.5rem;
+            background-color: rgb(var(--primary-color));
+        }
+
+        /*Part 1 end*/
+
+        /*Part 2 + 3 start*/
+        .product_wrapper {
+            display: flex;
+        }
+
+        .product_wrapper:hover {
+            border: 1px solid rgb(var(--border-color));
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+            var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        }
+
+        .product_image {
+            margin-top: 16px;
+            flex: 1;
+            min-height: 0;
+            object-fit: contain;
+        }
+
+        .product_info {
+            padding: 10px 10px 20px;
+            font-size: 0.9rem;
+            gap: 4px;
+        }
+
+        .product_name {
+            text-transform: capitalize;
+        }
+
+        .product_attribute {
+            gap: 4px;
+        }
+
+        .product_price {
+            font-weight: 600;
+            color: rgb(var(--primary-color));
+            font-size: 0.9rem;
+        }
+
+        .product_old_price {
+            font-size: 0.8rem;
+            color: rgb(var(--old-price-color));
+            text-decoration: line-through;
+        }
+
+        .product_rating {
+            gap: 4px;
+            font-size: 0.8rem;
+        }
+
+        .row_wrapper {
+            padding: 0 16px 16px;
+        }
+
+        .row {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: 1fr 1fr;
+            gap: 8px;
+            padding-top: 32px;
+        }
+
+        .single_row {
+            grid-template-rows: 1fr;
+        }
+
+        .heading {
+            padding: 16px 0 4px;
+            border-bottom: 2px solid rgb(var(--border-color));
+        }
+
+        .heading h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: black;
+            text-transform: capitalize;
+        }
+
+        .heading a {
+            font-size: 0.8rem;
+            color: rgb(var(--primary-color));
+        }
+
+        .introduction {
+            padding-top: 16px;
+        }
+
+        .introduction > h2 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: black;
+            padding: 16px 0 24px;
+        }
+
+        .introduction > p {
+            padding: 16px 0;
+        }
+
+        .introduction > span {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .introduction > span > a {
+            color: rgb(var(--primary-color));
+        }
+        /*Part 2+3 end*/
+
+        /*Part 4 start*/
+        footer {
+            background-color: rgb(var(--footer-background));
+            padding: 24px 16px;
+            font-size: 0.9rem;
+            margin-top: 32px;
+        }
+
+        footer * {
+            color: rgb(48, 45, 111);
+        }
+
+        .footer_logo {
+            height: 48px;
+        }
+
+        .info_wrapper {
+            gap: 36px;
+        }
+
+        .info_wrapper .brand {
+            gap: 12px;
+            flex-basis: 32%;
+            line-height: 1.5;
+        }
+
+        .subscribe {
+            align-self: stretch;
+            height: 42px;
+            align-items: stretch;
+        }
+
+        .subscribe input {
+            flex: 1 0 80%;
+            padding: 8px 16px;
+            border: 1px solid rgb(var(--primary-color));
+        }
+
+        .subscribe input:focus,
+        .subscribe input:focus-visible {
+            outline: none;
+            border: 2px solid rgb(var(--primary-color));
+        }
+
+        .subscribe button {
+            flex: 1 0 20%;
+            border: none;
+            background-color: rgb(var(--primary-color));
+            font-weight: 500;
+            color: white;
+            cursor: pointer;
+        }
+
+        .info {
+            gap: 12px;
+            flex: 1;
+        }
+
+        .info h2 {
+            font-size: 1.25rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .info a:hover {
+            text-decoration: underline;
+            color: rgb(var(--primary-color));
+        }
+
+        .qna h2 {
+            margin-bottom: 16px;
+        }
+
+        .qna b {
+            font-weight: 600;
+        }
+
+        .qna p {
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            margin-top: 60px;
+        }
+
+        .copyright > div {
+            gap: 8px;
+        }
+
+        .copyright .social {
+            gap: 16px;
+        }
+
+        .social i {
+            transition: 500ms ease-in-out;
+        }
+
+        .social i:hover {
+            transform: translateY(-10px);
+            transition: 500ms ease-in-out;
+        }
+
+        /*Part 4 end*/
+    </style>
+</head>
+<body>
+<main>
+    <!--Part 1 start-->
+    <div
+            class="banner_container content flex align-center justify-center"
+    >
+        <div class="main_banner col-50">
+            <img
+                    class="h-full"
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_6IJXAi0eTPTwjADU5VSmWfDXz.webp"
+            />
+        </div>
+        <div
+                class="small_banner col-25 flex flex-column justify-center"
+        >
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_MvGE4oT6WXVw6PX0Y1NHsLjRu.webp"
+                    alt=""
+            />
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_aLUbE3c5CndpGEdjY2uKb8rA9.webp"
+                    alt=""
+            />
+        </div>
+        <div class="flash_sale flex flex-column">
+            <h4>SALE SỐC</h4>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
                     <img
-                        class="h-full"
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_6IJXAi0eTPTwjADU5VSmWfDXz.webp"
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_ZKy1OsSyJQY3EG3GQ3e8w0Kae.jpg"
+                            alt=""
                     />
-                </div>
-                <div
-                    class="small_banner col-25 flex flex-column justify-center"
-                >
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_MvGE4oT6WXVw6PX0Y1NHsLjRu.webp"
-                        alt=""
-                    />
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/banner/747_aLUbE3c5CndpGEdjY2uKb8rA9.webp"
-                        alt=""
-                    />
-                </div>
-                <div class="flash_sale flex flex-column">
-                    <h4>SALE SỐC</h4>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_ZKy1OsSyJQY3EG3GQ3e8w0Kae.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Beautiful You</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">299,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Beautiful You</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">299,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="divider"></div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Bán chạy nhất Hà Nội</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_Tjd41LbUiUAzSz7QPrWy9FXS6.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Xanh xinh xắn</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">399,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+        </div>
+    </div>
+    <div class="divider"></div>
+    <!--    Part 1 end-->
+    <!--    Part 2 start-->
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Bán chạy nhất Hà Nội</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_Tjd41LbUiUAzSz7QPrWy9FXS6.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Xanh xinh xắn</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">399,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_cdPlzjoSdvPFrQWH093feMnAz.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Sweet Desire</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">429,000 đ</span>
-                                    <span class="product_old_price"
-                                        >729,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_cdPlzjoSdvPFrQWH093feMnAz.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Sweet Desire</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">429,000 đ</span>
+                            <span class="product_old_price"
+                            >729,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_8BsNVs2LhH6z58VLyOs5jrcoz.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_8BsNVs2LhH6z58VLyOs5jrcoz.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Set Bánh Cupcakes</span
+                                >Set Bánh Cupcakes</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">249,000 đ</span>
-                                    <span class="product_old_price"
-                                        >299,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">249,000 đ</span>
+                            <span class="product_old_price"
+                            >299,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(35)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_zjidh0APMf7FwIAT4BmikHpCZ.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Syrah</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">429,000 đ</span>
-                                    <span class="product_old_price"
-                                        >699,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_zjidh0APMf7FwIAT4BmikHpCZ.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Syrah</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">429,000 đ</span>
+                            <span class="product_old_price"
+                            >699,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(32)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Z4oZrBsaTyzpSJa6qUR3tFz0l.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Z4oZrBsaTyzpSJa6qUR3tFz0l.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Fly to the moon</span
+                                >Fly to the moon</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">429,000 đ</span>
-                                    <span class="product_old_price"
-                                        >899,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">429,000 đ</span>
+                            <span class="product_old_price"
+                            >899,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.9</span>
                                         <span>(25)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_yGUaZKWXVbrJakkJnoywnn6Vv.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_yGUaZKWXVbrJakkJnoywnn6Vv.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Hoa Kem Mlem Mlem</span
+                                >Hoa Kem Mlem Mlem</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">279,000 đ</span>
-                                    <span class="product_old_price"
-                                        >439,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">279,000 đ</span>
+                            <span class="product_old_price"
+                            >439,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_wK5OAWvVk0DxvTiuAwwm5TDHT.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Cool breeze</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">429,000 đ</span>
-                                    <span class="product_old_price"
-                                        >599,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_wK5OAWvVk0DxvTiuAwwm5TDHT.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Cool breeze</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">429,000 đ</span>
+                            <span class="product_old_price"
+                            >599,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.9</span>
                                         <span>(9)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_5mDZQZkpU3GvpHgiFNc0hS9Ur.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_5mDZQZkpU3GvpHgiFNc0hS9Ur.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Timeless Elegance</span
+                                >Timeless Elegance</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">349,000 đ</span>
-                                    <span class="product_old_price"
-                                        >449,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">349,000 đ</span>
+                            <span class="product_old_price"
+                            >449,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(32)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_x7e5ryYZ0amnG64l5ScvkjLNa.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">White Magic</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">429,000 đ</span>
-                                    <span class="product_old_price"
-                                        >649,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_x7e5ryYZ0amnG64l5ScvkjLNa.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">White Magic</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">429,000 đ</span>
+                            <span class="product_old_price"
+                            >649,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.0</span>
                                         <span>(1)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_5IVublJkxaAEqqdx4GSVEJ0ob.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_5IVublJkxaAEqqdx4GSVEJ0ob.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Nến thơm for my beloved</span
+                                >Nến thơm for my beloved</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_b8R4yHgGYbmQSj4m9TxMwU5pu.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Fabulously red</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >629,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_b8R4yHgGYbmQSj4m9TxMwU5pu.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Fabulously red</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >629,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.9</span>
                                         <span>(8)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_eCXNkR5pWnIO7s3kRUEamWK78.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Carla</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">599,000 đ</span>
-                                    <span class="product_old_price"
-                                        >829,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_eCXNkR5pWnIO7s3kRUEamWK78.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Carla</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">599,000 đ</span>
+                            <span class="product_old_price"
+                            >829,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.7</span>
                                         <span>(15)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Gửi lời tri ân mẹ</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid single_row">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_DInsyt3MxpL1cOkr6SiG5NEzW.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Rose land</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">599,000 đ</span>
-                                    <span class="product_old_price"
-                                        >899,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+        </div>
+    </div>
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Gửi lời tri ân mẹ</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid single_row">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_DInsyt3MxpL1cOkr6SiG5NEzW.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Rose land</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">599,000 đ</span>
+                            <span class="product_old_price"
+                            >899,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(10)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_kmd8Irz6wk9b7hEdeBhEzMk8N.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Violet Lover</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">599,000 đ</span>
-                                    <span class="product_old_price"
-                                        >999,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_kmd8Irz6wk9b7hEdeBhEzMk8N.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Violet Lover</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">599,000 đ</span>
+                            <span class="product_old_price"
+                            >999,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.0</span>
                                         <span>(40)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_NgpyX2Ku4FwyBJUEtRhR2BgA4.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_NgpyX2Ku4FwyBJUEtRhR2BgA4.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Combo i love mommy</span
+                                >Combo i love mommy</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">679,000 đ</span>
-                                    <span class="product_old_price"
-                                        >829,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">679,000 đ</span>
+                            <span class="product_old_price"
+                            >829,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_9VEw46o2qR4XNrh1BLeZLTwCb.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_9VEw46o2qR4XNrh1BLeZLTwCb.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Trà ngon như nhà làm</span
+                                >Trà ngon như nhà làm</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">199,000 đ</span>
-                                    <span class="product_old_price"
-                                        >249,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">199,000 đ</span>
+                            <span class="product_old_price"
+                            >249,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_zp15RpnKvgTVYdOePlTkOVxXJ.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_zp15RpnKvgTVYdOePlTkOVxXJ.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Nến thơm dành cho mẹ</span
+                                >Nến thơm dành cho mẹ</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >649,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >649,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Ij9lTCIwGFnvpg69r9onYPcYc.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Mon Bel Amour</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">499,000 đ</span>
-                                    <span class="product_old_price"
-                                        >599,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Ij9lTCIwGFnvpg69r9onYPcYc.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Mon Bel Amour</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">499,000 đ</span>
+                            <span class="product_old_price"
+                            >599,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.9</span>
                                         <span>(39)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Quà Tặng Sinh Nhật Hà Nội</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid single_row">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_c3uhyLcQMqkBPNGzWMckrPKrw.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Mia</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">449,000 đ</span>
-                                    <span class="product_old_price"
-                                        >699,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+        </div>
+    </div>
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Quà Tặng Sinh Nhật Hà Nội</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid single_row">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_c3uhyLcQMqkBPNGzWMckrPKrw.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Mia</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">449,000 đ</span>
+                            <span class="product_old_price"
+                            >699,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_pLaMXBhaTFv8kOEHowFIY8RSo.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Stuck in love</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">349,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_pLaMXBhaTFv8kOEHowFIY8RSo.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Stuck in love</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">349,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(5)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_5mDZQZkpU3GvpHgiFNc0hS9Ur.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_5mDZQZkpU3GvpHgiFNc0hS9Ur.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Timeless elegance</span
+                                >Timeless elegance</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">349,000 đ</span>
-                                    <span class="product_old_price"
-                                        >449,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">349,000 đ</span>
+                            <span class="product_old_price"
+                            >449,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_q4oTIzgrhbYin8GEZhUWirwDF.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_q4oTIzgrhbYin8GEZhUWirwDF.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Young & Beautiful</span
+                                >Young & Beautiful</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">499,000 đ</span>
-                                    <span class="product_old_price"
-                                        >729,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">499,000 đ</span>
+                            <span class="product_old_price"
+                            >729,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.8</span>
                                         <span>(6)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_RHoqeVFT80TrhhXadDcjnISLA.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Charming Rune</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">949,000 đ</span>
-                                    <span class="product_old_price"
-                                        >999,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_9NyWGt4ygia2P30nbzY20rkmN.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Shining Ruby</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">749,000 đ</span>
-                                    <span class="product_old_price"
-                                        >959,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
-                                        <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
-                                        ></i>
-                                        <span>5.0</span>
-                                        <span>(50)</span>
-                                    </span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Tốt Nghiệp</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid single_row">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_ksvMbao1WRu1YBSjcgX1n8MfC.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name"
-                                    >Thơ Thanh Thuần</span
-                                >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">179,000 đ</span>
-                                    <span class="product_old_price"
-                                        >249,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_RHoqeVFT80TrhhXadDcjnISLA.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Charming Rune</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">949,000 đ</span>
+                            <span class="product_old_price"
+                            >999,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Ko1fVEuRrDZepbfNaKn9HFdO2.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Happy Success</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">349,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_8VnT9hUwndJrujoHGqfV7no8Q.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Vương</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">299,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_9NyWGt4ygia2P30nbzY20rkmN.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Shining Ruby</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">749,000 đ</span>
+                            <span class="product_old_price"
+                            >959,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_lmcrRlNQstLSlZkurd2mv0LdP.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Yên Lành</span>
-                                <div
-                                    class="product_attribute flex align-center"
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Tốt Nghiệp</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid single_row">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_ksvMbao1WRu1YBSjcgX1n8MfC.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                                <span class="product_name"
+                                >Thơ Thanh Thuần</span
                                 >
-                                    <span class="product_price">579,000 đ</span>
-                                    <span class="product_old_price"
-                                        >599,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">179,000 đ</span>
+                            <span class="product_old_price"
+                            >249,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_tNjLOmf4wCOI0JIyQk9xXZrzS.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Mindful soul</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">429,000 đ</span>
-                                    <span class="product_old_price"
-                                        >699,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Ko1fVEuRrDZepbfNaKn9HFdO2.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Happy Success</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">349,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_8VnT9hUwndJrujoHGqfV7no8Q.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Vương</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">299,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
+                                        ></i>
+                                        <span>5.0</span>
+                                        <span>(50)</span>
+                                    </span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_lmcrRlNQstLSlZkurd2mv0LdP.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Yên Lành</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">579,000 đ</span>
+                            <span class="product_old_price"
+                            >599,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_tNjLOmf4wCOI0JIyQk9xXZrzS.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Mindful soul</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">429,000 đ</span>
+                            <span class="product_old_price"
+                            >699,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
+                                        <i
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(36)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_XHZiuJsEl7hPQBEPyluHOTmRb.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Joyful Life</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">349,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_XHZiuJsEl7hPQBEPyluHOTmRb.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Joyful Life</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">349,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Sản Phẩm Đặc Biệt Tháng 4</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid single_row">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_LYptR1K5BoppLZyj9OKr2PRCX.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Vùng ký ức</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >499,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+        </div>
+    </div>
+    <!--    Part 2 end-->
+    <!--    Part 3 start-->
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Sản Phẩm Đặc Biệt Tháng 4</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid single_row">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_LYptR1K5BoppLZyj9OKr2PRCX.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Vùng ký ức</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >499,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_Kejtu46HSJBK7dqPZ0vOoOfsN.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Chloris</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >999,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_CS2k2RscgftwHkx7lG1b7s6vd.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Nắng hạ</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >699,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_bnYVsOilvZz2sldPOZ7eSqbjy.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Ngày em đến</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">549,000 đ</span>
-                                    <span class="product_old_price"
-                                        >609,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Y1JHtHSwcaxtVCG6nCCf4pRWh.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Mây lang thang</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">749,000 đ</span>
-                                    <span class="product_old_price"
-                                        >799,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_R65Iars7nytXFhVVrNQpd9MFC.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Thơ thẩn</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">779,000 đ</span>
-                                    <span class="product_old_price"
-                                        >899,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Giỏ Hoa Thanh Lịch</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid single_row">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_1uKcGfjP1f3pRLJG3eNadItEP.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Warm soul</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">479,000 đ</span>
-                                    <span class="product_old_price"
-                                        >559,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_Kejtu46HSJBK7dqPZ0vOoOfsN.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Chloris</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >999,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_oMdozoc1byAaDKaWHIczTsNka.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Spring Morning</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">779,000 đ</span>
-                                    <span class="product_old_price"
-                                        >899,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_CS2k2RscgftwHkx7lG1b7s6vd.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Nắng hạ</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >699,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_d5WZsXSHqi3EJrm93aNfIcmc0.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_bnYVsOilvZz2sldPOZ7eSqbjy.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Ngày em đến</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">549,000 đ</span>
+                            <span class="product_old_price"
+                            >609,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_Y1JHtHSwcaxtVCG6nCCf4pRWh.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Mây lang thang</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">749,000 đ</span>
+                            <span class="product_old_price"
+                            >799,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/250_R65Iars7nytXFhVVrNQpd9MFC.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Thơ thẩn</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">779,000 đ</span>
+                            <span class="product_old_price"
+                            >899,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Giỏ Hoa Thanh Lịch</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid single_row">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_1uKcGfjP1f3pRLJG3eNadItEP.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Warm soul</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">479,000 đ</span>
+                            <span class="product_old_price"
+                            >559,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_oMdozoc1byAaDKaWHIczTsNka.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Spring Morning</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">779,000 đ</span>
+                            <span class="product_old_price"
+                            >899,000 đ</span
+                            >
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_d5WZsXSHqi3EJrm93aNfIcmc0.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Darling darling</span
+                                >Darling darling</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">899,000 đ</span>
-                                    <span class="product_old_price"
-                                        >999,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">899,000 đ</span>
+                            <span class="product_old_price"
+                            >999,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_9N8ToF1rZJta6FyvbpX6vl7XV.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Diamond love</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">679,000 đ</span>
-                                    <span class="product_old_price"
-                                        >779,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_9N8ToF1rZJta6FyvbpX6vl7XV.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Diamond love</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">679,000 đ</span>
+                            <span class="product_old_price"
+                            >779,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_jSyGuyjebq2pOxZ8gc89rTKj7.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Spring field</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">549,000 đ</span>
-                                    <span class="product_old_price"
-                                        >699,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_jSyGuyjebq2pOxZ8gc89rTKj7.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Spring field</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">549,000 đ</span>
+                            <span class="product_old_price"
+                            >699,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>5.0</span>
                                         <span>(50)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_rTvYCl07Hu9by9ZODfIu6HhjE.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
-                                <span class="product_name">Scented Love</span>
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">599,000 đ</span>
-                                    <span class="product_old_price"
-                                        >699,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_rTvYCl07Hu9by9ZODfIu6HhjE.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
+                        <span class="product_name">Scented Love</span>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">599,000 đ</span>
+                            <span class="product_old_price"
+                            >699,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.5</span>
                                         <span>(12)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper">
-                <div class="heading flex justify-between align-center">
-                    <h2>Cây để bàn</h2>
-                    <a href="#">Thêm nhiều lựa chọn</a>
-                </div>
-                <div class="row grid single_row">
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_v9DyikUsOc56JDa0QLJyBYFQs.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+        </div>
+    </div>
+    <div class="content row_wrapper">
+        <div class="heading flex justify-between align-center">
+            <h2>Cây để bàn</h2>
+            <a href="#">Thêm nhiều lựa chọn</a>
+        </div>
+        <div class="row grid single_row">
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_v9DyikUsOc56JDa0QLJyBYFQs.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Sen đá mèo con đáng yêu</span
+                                >Sen đá mèo con đáng yêu</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">229,000 đ</span>
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">229,000 đ</span>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_ju3stJEhjeuCSS8CtOqJ2PkS4.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_ju3stJEhjeuCSS8CtOqJ2PkS4.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Sen đá khủng long xanh</span
+                                >Sen đá khủng long xanh</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">229,000 đ</span>
-                                    <span class="product_old_price"
-                                        >259,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">229,000 đ</span>
+                            <span class="product_old_price"
+                            >259,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_4mCxxSEULSYxbqBG5O5FuakJx.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_4mCxxSEULSYxbqBG5O5FuakJx.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Chậu kim ngân lucky</span
+                                >Chậu kim ngân lucky</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">229,000 đ</span>
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">229,000 đ</span>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_es4660YZw9ELnjkGRuZdZtLM1.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_es4660YZw9ELnjkGRuZdZtLM1.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Chậu sen đá size đại</span
+                                >Chậu sen đá size đại</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">249,000 đ</span>
-                                    <span class="product_old_price"
-                                        >359,000 đ</span
-                                    >
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">249,000 đ</span>
+                            <span class="product_old_price"
+                            >359,000 đ</span
+                            >
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_z73GPcoTjc8Og4WUDS0JqIFHP.jpg"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_z73GPcoTjc8Og4WUDS0JqIFHP.jpg"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Chậu sen đá my daddy</span
+                                >Chậu sen đá my daddy</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">279,000 đ</span>
-                                </div>
-                            </div>
-                        </a>
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">279,000 đ</span>
+                        </div>
                     </div>
-                    <div class="product_wrapper">
-                        <a href="#" class="flex flex-column">
-                            <img
-                                class="product_image"
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_TPdgKJWfDGD8jmuw21p4zTzfT.webp"
-                                alt=""
-                            />
-                            <div class="product_info flex flex-column">
+                </a>
+            </div>
+            <div class="product_wrapper">
+                <a href="#" class="flex flex-column">
+                    <img
+                            class="product_image"
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/product/350_TPdgKJWfDGD8jmuw21p4zTzfT.webp"
+                            alt=""
+                    />
+                    <div class="product_info flex flex-column">
                                 <span class="product_name"
-                                    >Chậu kim ngân my daddy</span
+                                >Chậu kim ngân my daddy</span
                                 >
-                                <div
-                                    class="product_attribute flex align-center"
-                                >
-                                    <span class="product_price">379,000 đ</span>
-                                    <span class="product_old_price"
-                                        >449,000 đ</span
-                                    >
-                                    <span
-                                        class="product_rating flex align-center"
-                                    >
+                        <div
+                                class="product_attribute flex align-center"
+                        >
+                            <span class="product_price">379,000 đ</span>
+                            <span class="product_old_price"
+                            >449,000 đ</span
+                            >
+                            <span
+                                    class="product_rating flex align-center"
+                            >
                                         <i
-                                            class="fa-solid fa-star"
-                                            style="color: #f1ff2e"
+                                                class="fa-solid fa-star"
+                                                style="color: #f1ff2e"
                                         ></i>
                                         <span>4.5</span>
                                         <span>(12)</span>
                                     </span>
-                                </div>
-                            </div>
-                        </a>
+                        </div>
                     </div>
-                </div>
+                </a>
             </div>
-            <div class="content row_wrapper introduction">
-                <h2>Potico.vn - Điện Hoa Tươi và Quà Tặng Hàng Đầu Việt Nam</h2>
-                <p>
-                    Potico.vn là điện hoa chuyên cung cấp bó hoa yêu thương và
-                    quà tặng ý nghĩa hàng đầu tại Việt Nam. Potico.vn luôn miễn
-                    phí giao hàng trong khu vực nội thành TP. Hồ Chí Minh và Hà
-                    Nội, đồng thời cung cấp đa dạng các phương thức thanh toán
-                    giúp trải nghiệm mua sắm của khách hàng trở nên dễ dàng và
-                    tiện lợi nhất.
-                </p>
-                <p>
-                    Hiện tại, Potico.vn đã có mặt ở hơn 40 tỉnh thành khác nhau.
-                    Tất cả các sản phẩm hoa đều là hoa tươi được cắt mỗi ngày và
-                    đóng gói một cách cẩn thận nhất trong những hộp hoa carton,
-                    giúp bạn trao đi tâm tư trọn vẹn đến người thương. Ngoài ra,
-                    Potico.vn cũng đem đến rất nhiều mẫu quà tặng độc đáo, đa
-                    dạng màu sắc và chất lượng cao. Với tổng hơn 1000 sản phẩm,
-                    khách hàng có thể tự do lựa chọn hoa tươi & quà tặng cho tất
-                    cả các dịp như sinh nhật, tốt nghiệp, lãng mạn, chúc mừng
-                    khai trương, hoa cưới, hoa chia buồn,..... với giá chỉ từ
-                    149K.
-                </p>
-                <p>
-                    <b> * Các Quận Nội thành áp dụng miễn phí vận chuyển: </b>
-                </p>
-                <p>
-                    / Hà Nội: Quận Ba Đình, Hai Bà Trưng, Hoàn Kiếm, Hoàng Mai,
-                    Tây Hồ, Thanh Xuân, Đống Đa, Cầu Giấy, Bắc Từ Liêm.
-                </p>
-                <p>
-                    / TP.HCM: Quận 1, 10, 11, 3, 4, 5, 6, 7, 8, Bình Thạnh, Phú
-                    Nhuận, Tân Bình, Gò Vấp, Tân Phú.
-                </p>
-            </div>
-            <div class="content row_wrapper introduction">
-                <h2>Gửi Hoa Tươi và Quà Tặng Khắp Việt Nam?</h2>
-                <p>
-                    Nếu bạn đang ở nước ngoài hoặc những tỉnh thành phố khác,
-                    đừng lo vì Potico.vn sẽ biến việc mua sắm của bạn trở nên
-                    thật dễ dàng. Tất cả các sản phẩm khi bạn đặt hàng dù là bó
-                    hoa, giỏ hoa, hộp hoa hay các món quà ý nghĩa khác đều sẽ
-                    được đóng gói chỉn chu và trao đến tận tay người nhận theo
-                    thông tin bạn cung cấp. Cùng Potico.vn biến mọi dịp trở nên
-                    thật đặc biệt và lan tỏa hạnh phúc đến những người thân yêu
-                    của bạn dù bạn đang ở bất cứ đâu!
-                </p>
-            </div>
-            <div class="content row_wrapper introduction">
-                <h2>POTICO.VN - Hoa & Quà Tặng Gửi Người Thương</h2>
-                <span>
+        </div>
+    </div>
+    <div class="content row_wrapper introduction">
+        <h2>CHOHOA.vn - Điện Hoa Tươi và Quà Tặng Hàng Đầu Việt Nam</h2>
+        <p>
+            CHOHOA.vn là điện hoa chuyên cung cấp bó hoa yêu thương và
+            quà tặng ý nghĩa hàng đầu tại Việt Nam. CHOHOA.vn luôn miễn
+            phí giao hàng trong khu vực nội thành TP. Hồ Chí Minh và Hà
+            Nội, đồng thời cung cấp đa dạng các phương thức thanh toán
+            giúp trải nghiệm mua sắm của khách hàng trở nên dễ dàng và
+            tiện lợi nhất.
+        </p>
+        <p>
+            Hiện tại, CHOHOA.vn đã có mặt ở hơn 40 tỉnh thành khác nhau.
+            Tất cả các sản phẩm hoa đều là hoa tươi được cắt mỗi ngày và
+            đóng gói một cách cẩn thận nhất trong những hộp hoa carton,
+            giúp bạn trao đi tâm tư trọn vẹn đến người thương. Ngoài ra,
+            CHOHOA.vn cũng đem đến rất nhiều mẫu quà tặng độc đáo, đa
+            dạng màu sắc và chất lượng cao. Với tổng hơn 1000 sản phẩm,
+            khách hàng có thể tự do lựa chọn hoa tươi & quà tặng cho tất
+            cả các dịp như sinh nhật, tốt nghiệp, lãng mạn, chúc mừng
+            khai trương, hoa cưới, hoa chia buồn,..... với giá chỉ từ
+            149K.
+        </p>
+        <p>
+            <b> * Các Quận Nội thành áp dụng miễn phí vận chuyển: </b>
+        </p>
+        <p>
+            / Hà Nội: Quận Ba Đình, Hai Bà Trưng, Hoàn Kiếm, Hoàng Mai,
+            Tây Hồ, Thanh Xuân, Đống Đa, Cầu Giấy, Bắc Từ Liêm.
+        </p>
+        <p>
+            / TP.HCM: Quận 1, 10, 11, 3, 4, 5, 6, 7, 8, Bình Thạnh, Phú
+            Nhuận, Tân Bình, Gò Vấp, Tân Phú.
+        </p>
+    </div>
+    <div class="content row_wrapper introduction">
+        <h2>Gửi Hoa Tươi và Quà Tặng Khắp Việt Nam?</h2>
+        <p>
+            Nếu bạn đang ở nước ngoài hoặc những tỉnh thành phố khác,
+            đừng lo vì CHOHOA.vn sẽ biến việc mua sắm của bạn trở nên
+            thật dễ dàng. Tất cả các sản phẩm khi bạn đặt hàng dù là bó
+            hoa, giỏ hoa, hộp hoa hay các món quà ý nghĩa khác đều sẽ
+            được đóng gói chỉn chu và trao đến tận tay người nhận theo
+            thông tin bạn cung cấp. Cùng CHOHOA.vn biến mọi dịp trở nên
+            thật đặc biệt và lan tỏa hạnh phúc đến những người thân yêu
+            của bạn dù bạn đang ở bất cứ đâu!
+        </p>
+    </div>
+    <div class="content row_wrapper introduction">
+        <h2>CHOHOA.VN - Hoa & Quà Tặng Gửi Người Thương</h2>
+        <span>
                     Facebook:
                     <a href="https://www.facebook.com/" target="_blank"
-                        >https://www.facebook.com/</a
+                    >https://www.facebook.com/</a
                     >
                 </span>
-                <span>
+        <span>
                     Instagram:
                     <a href="https://www.instagram.com/" target="_blank"
-                        >https://www.instagram.com/</a
+                    >https://www.instagram.com/</a
                     >
                 </span>
-                <span>
+        <span>
                     Tiktok:
                     <a href="https://www.tiktok.com/" target="_blank"
-                        >https://www.tiktok.com/</a
+                    >https://www.tiktok.com/</a
                     >
                 </span>
-                <span> Email: contact@polico.vn </span>
+        <span> Email: contact@polico.vn </span>
+    </div>
+<!--    Part 3 end-->
+</main>
+<!--Part 4 start-->
+<footer>
+    <div class="content row_wrapper flex info_wrapper">
+        <div class="flex flex-column brand">
+            <div class="footer_logo">
+                <a href="#">
+                    <img
+                            src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/hub/350_0dcOGeg3ekZp5QwC1gYhMmSwQ.webp"
+                            alt="logo"
+                    />
+                </a>
             </div>
-        </main>
-        <footer>
-            <div class="content row_wrapper flex info_wrapper">
-                <div class="flex flex-column brand">
-                    <div class="footer_logo">
-                        <a href="#">
-                            <img
-                                src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/hub/350_0dcOGeg3ekZp5QwC1gYhMmSwQ.webp"
-                                alt="logo"
-                            />
-                        </a>
-                    </div>
-                    <p>TP. Hồ Chí Minh: Châu Thới, Phường 15, Quận 10</p>
-                    <p>Hà Nội: An Dương, Phường Yên Phụ, Quận Tây Hồ</p>
-                    <p>
-                        Chỉ từ 149k - Mua hoa tươi không lo về giá. Giao hàng
-                        miễn phí trong ngày, khu vực nội thành Hà Nội, TpHCM.
-                        Thu tiền mặt tận nơi, chuyển khoản hoặc thanh toán qua
-                        thẻ. Lựa chọn hoàn hảo cho những dịp đặc biệt: Sinh
-                        Nhật, Kỉ Niệm, Lãng Mạn, Ngày Phụ Nữ, Ngày Valentine,
-                        Ngày của Mẹ. Ngoài ra, Potico Việt Nam nhận đặt vòng
-                        hoa, kệ hoa khai trương, chúc mừng và cho các dịp khác.
-                    </p>
-                    <div class="subscribe flex">
-                        <input
-                            type="text"
-                            placeholder="Địa chỉ email của bạn"
-                        />
-                        <button>Đăng ký</button>
-                    </div>
-                </div>
-                <div class="info flex flex-column">
-                    <h2>Liên kết trang web</h2>
-                    <a href="#">Bộ sưu tập</a>
-                    <a href="#">Giới thiệu</a>
-                    <a href="#">Hướng dẫn chăm sóc hoa</a>
-                    <a href="#">Thông tin tuyển dụng</a>
-                    <a href="#">Blog</a>
-                    <a href="#">Theo dõi đơn hàng</a>
-                </div>
-                <div class="info flex flex-column">
-                    <h2>Chăm sóc khách hàng</h2>
-                    <a href="#">Liên hệ với chúng tôi</a>
-                    <a href="#">Câu hỏi thường gặp</a>
-                    <a href="#">Phương thức thanh toán</a>
-                    <a href="#">Điều khoản và điều kiện</a>
-                    <a href="#">Chính sách bảo mật</a>
-                </div>
-                <div class="info qna">
-                    <h2>Bạn có câu hỏi?</h2>
-                    <b>Điện thoại:</b>
-                    <p>1900 63 35 37</p>
-                    <p>Thứ Hai - Chủ Nhật (8:00 - 19:00)</p>
-                    <b>Email:</b>
-                    <p>
-                        <a href="mailto:contact@potico.vn">contact@potico.vn</a>
-                    </p>
-                    <b>Truyền thông và Đối tác:</b>
-                    <p>
-                        <a href="mailto:marketing@potico.vn"
-                            >marketing@potico.vn</a
-                        >
-                    </p>
-                </div>
-                <div class="info flex flex-column">
-                    <h2 style="text-transform: none">POTICO.vn</h2>
-                    <p>
-                        <b><a href="#">Philippines - FlowerStore.ph</a></b>
-                    </p>
-                    <p>
-                        <b><a href="#">Vietnam - Potico.vn</a></b>
-                    </p>
-                    <p>
-                        <b><a href="#">Thailand - Potico.co.th</a></b>
-                    </p>
-                    <p>Văn Phòng Hành Chính</p>
-                    <p>TP. Hồ Chí Minh: Châu Thới, Phường 15, Quận 10</p>
-                    <p>Hà Nội: An Dương, Phường Yên Phụ, Quận Tây Hồ</p>
-                </div>
+            <p>TP. Hồ Chí Minh: Châu Thới, Phường 15, Quận 10</p>
+            <p>Hà Nội: An Dương, Phường Yên Phụ, Quận Tây Hồ</p>
+            <p>
+                Chỉ từ 149k - Mua hoa tươi không lo về giá. Giao hàng
+                miễn phí trong ngày, khu vực nội thành Hà Nội, TpHCM.
+                Thu tiền mặt tận nơi, chuyển khoản hoặc thanh toán qua
+                thẻ. Lựa chọn hoàn hảo cho những dịp đặc biệt: Sinh
+                Nhật, Kỉ Niệm, Lãng Mạn, Ngày Phụ Nữ, Ngày Valentine,
+                Ngày của Mẹ. Ngoài ra, CHOHOA Việt Nam nhận đặt vòng
+                hoa, kệ hoa khai trương, chúc mừng và cho các dịp khác.
+            </p>
+            <div class="subscribe flex">
+                <input
+                        type="text"
+                        placeholder="Địa chỉ email của bạn"
+                />
+                <button>Đăng ký</button>
             </div>
-            <div class="content row_wrapper copyright flex justify-between">
-                <p>© 2023 CÔNG TY TNHH FLOWER STORE VIỆT NAM</p>
-                <div
-                    class="flex align-center justify-center"
-                    style="height: 14px"
+        </div>
+        <div class="info flex flex-column">
+            <h2>Liên kết trang web</h2>
+            <a href="#">Bộ sưu tập</a>
+            <a href="#">Giới thiệu</a>
+            <a href="#">Hướng dẫn chăm sóc hoa</a>
+            <a href="#">Thông tin tuyển dụng</a>
+            <a href="#">Blog</a>
+            <a href="#">Theo dõi đơn hàng</a>
+        </div>
+        <div class="info flex flex-column">
+            <h2>Chăm sóc khách hàng</h2>
+            <a href="#">Liên hệ với chúng tôi</a>
+            <a href="#">Câu hỏi thường gặp</a>
+            <a href="#">Phương thức thanh toán</a>
+            <a href="#">Điều khoản và điều kiện</a>
+            <a href="#">Chính sách bảo mật</a>
+        </div>
+        <div class="info qna">
+            <h2>Bạn có câu hỏi?</h2>
+            <b>Điện thoại:</b>
+            <p>1900 63 35 37</p>
+            <p>Thứ Hai - Chủ Nhật (8:00 - 19:00)</p>
+            <b>Email:</b>
+            <p>
+                <a href="mailto:contact@chohoa.vn">contact@chohoa.vn</a>
+            </p>
+            <b>Truyền thông và Đối tác:</b>
+            <p>
+                <a href="mailto:marketing@chohoa.vn"
+                >marketing@chohoa.vn</a
                 >
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_ros8madgW35HeN2hVyOY9aguc.png"
-                        alt=""
-                    />
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_URoNnywsPIXSiI9G9rMLdTQ3A.png"
-                        alt=""
-                    />
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_HhLpYDdXbFo37Cpe7FevEuzsN.webp"
-                        alt=""
-                    />
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_DNx15tG7DRv9jNydgEXm9pxqS.webp"
-                        alt=""
-                    />
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_ZcV3tzUR8gcGGDps3Fmh0g83r.png"
-                        alt=""
-                    />
-                    <img
-                        src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_6Jerst7LNrIHu0PsBshFiRU82.webp"
-                        alt=""
-                    />
-                </div>
-                <div class="flex align-center justify-center social">
-                    <a href="https://facebook.com" target="_blank">
-                        <i class="fa-brands fa-facebook-f fa-2xl"></i>
-                    </a>
-                    <a href="https://instagram.com" target="_blank">
-                        <i
-                            class="fa-brands fa-instagram fa-2xl"
-                            style="color: #e42564"
-                        ></i>
-                    </a>
-                    <a href="https://tiktok.com" target="_blank">
-                        <i
-                            class="fa-brands fa-tiktok fa-2xl"
-                            style="color: #000000"
-                        ></i>
-                    </a>
-                    <a href="https://youtube.com" target="_blank">
-                        <i
-                            class="fa-brands fa-youtube fa-2xl"
-                            style="color: #e00b0b"
-                        ></i>
-                    </a>
-                    <a href="https://pinterest.com" target="_blank">
-                        <i
-                            class="fa-brands fa-pinterest fa-2xl"
-                            style="color: #6b1919"
-                        ></i>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank">
-                        <i
-                            class="fa-brands fa-linkedin fa-2xl"
-                            style="color: #0e76a8"
-                        ></i>
-                    </a>
-                </div>
-            </div>
-        </footer>
-    </body>
+            </p>
+        </div>
+        <div class="info flex flex-column">
+            <h2 style="text-transform: none">CHOHOA.vn</h2>
+            <p>
+                <b><a href="#">Philippines - FlowerStore.ph</a></b>
+            </p>
+            <p>
+                <b><a href="#">Vietnam - chohoa.vn</a></b>
+            </p>
+            <p>
+                <b><a href="#">Thailand - chohoa.co.th</a></b>
+            </p>
+            <p>Văn Phòng Hành Chính</p>
+            <p>TP. Hồ Chí Minh: Châu Thới, Phường 15, Quận 10</p>
+            <p>Hà Nội: An Dương, Phường Yên Phụ, Quận Tây Hồ</p>
+        </div>
+    </div>
+    <div class="content row_wrapper copyright flex justify-between">
+        <p>© 2023 CÔNG TY TNHH CHO HOA VIỆT NAM</p>
+        <div
+                class="flex align-center justify-center"
+                style="height: 14px"
+        >
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_ros8madgW35HeN2hVyOY9aguc.png"
+                    alt=""
+            />
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_URoNnywsPIXSiI9G9rMLdTQ3A.png"
+                    alt=""
+            />
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_HhLpYDdXbFo37Cpe7FevEuzsN.webp"
+                    alt=""
+            />
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_DNx15tG7DRv9jNydgEXm9pxqS.webp"
+                    alt=""
+            />
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_ZcV3tzUR8gcGGDps3Fmh0g83r.png"
+                    alt=""
+            />
+            <img
+                    src="https://assets.flowerstore.ph/public/tenantVN/app/assets/images/payment_method/50_6Jerst7LNrIHu0PsBshFiRU82.webp"
+                    alt=""
+            />
+        </div>
+        <div class="flex align-center justify-center social">
+            <a href="https://facebook.com" target="_blank">
+                <i class="fa-brands fa-facebook-f fa-2xl"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <i
+                        class="fa-brands fa-instagram fa-2xl"
+                        style="color: #e42564"
+                ></i>
+            </a>
+            <a href="https://tiktok.com" target="_blank">
+                <i
+                        class="fa-brands fa-tiktok fa-2xl"
+                        style="color: #000000"
+                ></i>
+            </a>
+            <a href="https://youtube.com" target="_blank">
+                <i
+                        class="fa-brands fa-youtube fa-2xl"
+                        style="color: #e00b0b"
+                ></i>
+            </a>
+            <a href="https://pinterest.com" target="_blank">
+                <i
+                        class="fa-brands fa-pinterest fa-2xl"
+                        style="color: #6b1919"
+                ></i>
+            </a>
+            <a href="https://linkedin.com" target="_blank">
+                <i
+                        class="fa-brands fa-linkedin fa-2xl"
+                        style="color: #0e76a8"
+                ></i>
+            </a>
+        </div>
+    </div>
+</footer>
+<!--Part 4 end-->
+</body>
 </html>
